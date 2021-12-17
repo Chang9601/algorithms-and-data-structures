@@ -49,7 +49,6 @@ void insert_node(Node **head, int value)
 
 void delete_node(Node **head, Node *node)
 {
-	//Node *curr_node = *head;
 	Node *prev_node = _precede_curr_node(*head, node);
 	
 	if(prev_node == NULL)
