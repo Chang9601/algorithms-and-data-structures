@@ -96,6 +96,17 @@ int main(int argc, char *argv[])
 			scanf("%d", &value);
 			insert_node(&head, value);
 		}	
+		else if(!strcmp(cmd, "search"))
+		{
+			printf("Search value: ");
+			scanf("%d", &value);
+			node = search_node(head, value);
+
+			if(node != NULL)
+				printf("Value %d found\n", value);
+			else
+				printf("Value %d not found\n", value);
+		}
 		else if(!strcmp(cmd, "delete"))
 		{
 			printf("Delete value: ");
