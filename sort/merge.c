@@ -1,7 +1,3 @@
-/*
-	No memory leak, but errors detected
-*/
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -28,7 +24,7 @@ void _merge(int array[], int *buffer, int low, int high)
 
 void merge_sort(int array[], int *buffer, int array_size)
 {
-	buffer = malloc(sizeof(array[0] * array_size));
+	buffer = malloc(sizeof(array[0]) * array_size);
 	_merge(array, buffer, 0, array_size - 1);
 	free(buffer);
 }
