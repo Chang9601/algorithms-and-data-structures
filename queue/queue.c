@@ -48,8 +48,10 @@ int back(queue *que, int *value)
 		return -1;
 	else
 	{
-		if(que -> rear == 0) *value = que -> pointer[(que -> count) - 1];
-		else *value = que -> pointer[(que -> rear) - 1];
+		if(que -> rear == 0) 
+			*value = que -> pointer[(que -> count) - 1];
+		else
+			*value = que -> pointer[(que -> rear) - 1];
 	}
 
 	return 0;
