@@ -4,12 +4,12 @@
 #include <string.h>
 #include "tree.h"
 
-static BSTNode *_allocate_bnode(void)
+static BSTNode *_allocate_bstnode(void)
 {
 	return malloc(sizeof(BSTNode));
 }
 
-static BSTNode *_precede_curr_bnode(BSTNode *root)
+static BSTNode *_precede_curr_bstnode(BSTNode *root)
 {
 	if(root -> left == NULL)
 		return NULL;
@@ -20,7 +20,7 @@ static BSTNode *_precede_curr_bnode(BSTNode *root)
 	return root;
 }
 
-static BSTNode *_succeed_curr_bnode(BSTNode *root)
+static BSTNode *_succeed_curr_bstnode(BSTNode *root)
 {
 	if(root -> right == NULL)
 		return NULL;
@@ -36,20 +36,20 @@ BSTNode *initialize_bst(void)
 	return NULL;
 }
 
-BSTNode *insert_bnode(BSTNode *root, int value)
+BSTNode *insert_bstnode(BSTNode *root, int value)
 {
 	if(root == NULL)
 	{
-		root = _allocate_bnode();
+		root = _allocate_bstnode();
 		root -> left = root -> right = NULL;
 		root -> value = value;
 	}
 	else if(root -> value == value)
 		printf("%d already in the bst.\n", value);
 	else if(root -> value < value)
-		root -> right = insert_bnode(root -> right, value);
+		root -> right = insert_bstnode(root -> right, value);
 	else
-		root -> left = insert_bnode(root -> left, value);
+		root -> left = insert_bstnode(root -> left, value);
 	
 	return root;
 }
@@ -59,7 +59,7 @@ bool is_empty_bst(BSTNode *root)
 	return root == NULL;
 }
 
-int delete_bnode(BSTNode **root, int value)
+int delete_bstnode(BSTNode **root, int value)
 {
 	BSTNode *next, *temp;
 	BSTNode **p, **left;
@@ -98,16 +98,16 @@ int delete_bnode(BSTNode **root, int value)
 	return 0;
 }
 
-BSTNode *search_bnode(BSTNode *root, int value)
+BSTNode *search_bstnode(BSTNode *root, int value)
 {
 	if(root == NULL)
 		return NULL;
 	else if(root -> value == value)
 		return root;
 	else if(root -> value < value)
-		return search_bnode(root -> right, value);
+		return search_bstnode(root -> right, value);
 	else
-		return search_bnode(root -> left, value);
+		return search_bstnode(root -> left, value);
 }
 
 void traverse_bst(BSTNode *root)
@@ -153,7 +153,7 @@ BSTNode *find_maximum(BSTNode *root)
 int main(int argc, char *argv[])
 {
 	BSTNode *root = initialize_bst();
-	BSTNode *bnode;
+	BSTNode *bstnode;
 	char cmd[15];
 	int value;	
 	
@@ -163,15 +163,15 @@ int main(int argc, char *argv[])
 		{
 			printf("Insert value: ");
 			scanf("%d", &value);
-			root = insert_bnode(root, value);
+			root = insert_bstnode(root, value);
 		}	
 		else if(!strcmp(cmd, "search"))
 		{
 			printf("Search value: ");
 			scanf("%d", &value);
 
-			bnode = search_bnode(root, value);	
-			if(bnode != NULL)
+			bstnode = search_bstnode(root, value);	
+			if(bstnode != NULL)
 				printf("Value %d found\n", value);
 			else
 				printf("Value %d not found\n", value);
@@ -183,7 +183,7 @@ int main(int argc, char *argv[])
 	
 			if(is_empty_bst(root))
 				puts("Empty tree");
-			else if(delete_bnode(&root, value) == -1)
+			else if(delete_bstnode(&root, value) == -1)
 				printf("Value %d not found\n", value);
 			else
 				printf("Value %d deleted\n", value);

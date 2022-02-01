@@ -3,7 +3,7 @@
 #include <string.h>
 #include "chain.h"
 
-static Node *_allocate_node()
+static Node *_allocate_node(void)
 {
 	return malloc(sizeof(Node));
 }
@@ -45,7 +45,6 @@ int insert_node(ChainHash *hash, int value)
 	Node *new_node = _allocate_node();
 	new_node -> value = value;
 	new_node -> next = hash -> table[key];
-	// TO-DO
 	hash -> table[key] = new_node;	
 
 	return 0;
@@ -62,7 +61,7 @@ int delete_node(ChainHash *hash, int value)
 	{
 		if(curr_node -> value == value)
 		{	
-			// TO-DO
+			// Instead of deleting a node, the node's address(a.k.a double pointer) points to the next node
 			*curr_node_ptr = curr_node -> next;
 			free(curr_node);
 			return 0;
