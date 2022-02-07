@@ -4,60 +4,60 @@
 #include <stdbool.h>
 #include "stack.h"
 
-void initialize_stack(stack *stk, int count)
+void initialize_stack(Stack *stack, int count)
 {
-	stk -> pointer = malloc(sizeof(int) * count);
-	stk -> count = count;
-	stk -> top = 0;
+	stack -> pointer = malloc(sizeof(int) * count);
+	stack -> count = count;
+	stack -> top = 0;
 }
 
-int push(stack *stk, int value)
+int push_stack(Stack *stack, int value)
 {
-	if(stk -> top >= stk -> count)
+	if(stack -> top >= stack -> count)
 		return -1;
-	stk -> pointer[(stk -> top)++] = value;
+	stack -> pointer[(stack -> top)++] = value;
 	return 0;
 }
 
-int pop(stack *stk, int *value)
+int pop_stack(Stack *stack, int *value)
 {
-	if(stk -> top <= 0)
+	if(stack -> top <= 0)
 		return -1;
-	*value = stk -> pointer[--(stk -> top)];
+	*value = stack -> pointer[--(stack -> top)];
 	return 0;
 }
 
-int top(stack *stk, int *value)
+int top_stack(Stack *stack, int *value)
 {
-	if(stk -> top <= 0)
+	if(stack -> top <= 0)
 		return -1;
-	*value = stk -> pointer[(stk -> top) - 1];
+	*value = stack -> pointer[(stack -> top) - 1];
 	return 0;
 }
 	
-bool is_empty_stack(stack *stk)
+bool is_empty_stack(Stack *stack)
 {
-	return stk -> top <= 0;
+	return stack -> top <= 0;
 }	
 
-void destroy_stack(stack *stk)
+void destroy_stack(Stack *stack)
 {
-	if(stk -> pointer)
-		free(stk -> pointer);
-	stk -> top = stk -> count = 0;
-	stk -> pointer = NULL;
+	if(stack -> pointer)
+		free(stack -> pointer);
+	stack -> top = stack -> count = 0;
+	stack -> pointer = NULL;
 }
 
 int main(int argc, char *argv[])
 {
 	char cmd[15];
-	stack stk;
+	Stack stack;
 	int count;
 	int value;
 	printf("Enter the size of a stack: ");
 	scanf("%d", &count);
 
-	initialize_stack(&stk, count);
+	initialize_stack(&stack, count);
 		
 	while(scanf("%s", cmd) != EOF)
 	{
@@ -65,32 +65,32 @@ int main(int argc, char *argv[])
 		{
 			printf("Push value: ");
 			scanf("%d", &value);
-			if(push(&stk, value) != 0)
+			if(push_stack(&stack, value) != 0)
 				puts("Exceeded capacity");
 		}	
 		else if(!strcmp(cmd, "pop"))
 		{
-			if(is_empty_stack(&stk))
+			if(is_empty_stack(&stack))
 				puts("Empty stack");
 			else
 			{
-				pop(&stk, &value);
+				pop_stack(&stack, &value);
 				printf("Value %d deleted\n", value);
 			}
 		}
 		else if(!strcmp(cmd, "top"))
 		{
-			if(is_empty_stack(&stk))
+			if(is_empty_stack(&stack))
 				puts("Empty stack");
 			else
-			{	top(&stk, &value);
+			{	top_stack(&stack, &value);
 				printf("Value %d at the top\n", value);
 			}
 		}
 		else if(!strcmp(cmd, "destroy"))
 		{
 			puts("Destroy the stack");
-			destroy_stack(&stk);
+			destroy_stack(&stack);
 		}
 		else
 			puts("Wrong command");

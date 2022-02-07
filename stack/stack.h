@@ -1,14 +1,14 @@
 #include <stdbool.h>
 
-typedef struct _stack {
+typedef struct _Stack {
 	int count;
 	int top; 
 	int *pointer;	
-} stack;
+} Stack;
 
-void initialize_stack(stack *stk, int count);
-int push(stack *stk, int value);
-int pop(stack *stk, int *value);
-int top(stack *stk, int *value);
-bool is_empty_stack(stack *stk);
-void destroy_stack(stack *stk);
+void initialize_stack(Stack *stack, int count);
+int push(Stack *stack, int value);
+int pop(Stack *stack, int *value);
+int top(Stack *stack, int *value);
+bool is_empty_stack(Stack *stack);
+void destroy_stack(Stack *stack);
