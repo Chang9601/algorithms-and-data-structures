@@ -19,7 +19,7 @@ void initialize_bfs(Graph *graph)
 void bfs(Graph *graph, int start_vertex)
 {
 	Queue queue;
-	ENode *edge;
+	Edge *edge;
 	int vertex, other_vertex;
 	
 	initialize_queue(&queue, MAX_VERTEX);

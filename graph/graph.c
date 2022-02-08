@@ -4,9 +4,9 @@
 #include <string.h>
 #include "graph.h"
 
-static ENode *_allocate_node(void)
+static Edge *_allocate_node(void)
 {
-	return malloc(sizeof(ENode));
+	return malloc(sizeof(Edge));
 }
 
 void initialize_graph(Graph *graph, bool directed)
@@ -25,7 +25,7 @@ void initialize_graph(Graph *graph, bool directed)
 
 void insert_edge(Graph *graph, int vertex, int other_vertex, bool directed)
 {
-	ENode *edge = _allocate_node();
+	Edge *edge = _allocate_node();
 	
 	edge -> other_vertex = other_vertex;
 	edge -> weight = 0;
@@ -42,7 +42,7 @@ void insert_edge(Graph *graph, int vertex, int other_vertex, bool directed)
 void delete_edge(Graph *graph, int vertex, int other_vertex, bool directed)
 {
 	// TO-DO: Use double pointer to delete an edge
-	ENode *curr_edge, *prev_edge;
+	Edge *curr_edge, *prev_edge;
 	
 	prev_edge = NULL;	
 	for(curr_edge = graph -> edges[vertex]; curr_edge; prev_edge = curr_edge, curr_edge = curr_edge -> next)
@@ -88,7 +88,7 @@ void make_graph(Graph *graph, bool directed)
 void print_graph(Graph *graph)
 {
 	int i;
-	ENode *edge;
+	Edge *edge;
 	for(i = 1; i <= graph -> num_vertices; i++)
 	{
 		printf("Vertex %d: ", i);
@@ -101,7 +101,7 @@ void print_graph(Graph *graph)
 void destroy_graph(Graph *graph)
 {
 	int i;
-	ENode *curr_edge, *next_edge;
+	Edge *curr_edge, *next_edge;
 	
 	for(i = 1; i <= graph -> num_vertices; i++)
 	{

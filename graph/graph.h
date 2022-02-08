@@ -2,14 +2,14 @@
 
 #define MAX_VERTEX 100
 
-typedef struct _ENode {
+typedef struct _Edge {
 	int other_vertex;
 	int weight;
-	struct _ENode *next;
-} ENode;
+	struct _Edge *next;
+} Edge;
 
 typedef struct _Graph {
-	ENode *edges[MAX_VERTEX + 1];
+	Edge *edges[MAX_VERTEX + 1];
 	int degrees[MAX_VERTEX + 1];
 	int num_vertices;
 	int num_edges;

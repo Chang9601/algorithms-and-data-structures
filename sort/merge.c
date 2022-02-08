@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void _merge(int array[], int *buffer, int low, int high)
+static void _merge(int array[], int *buffer, int low, int high)
 {
 	if(low >= high)
 		return;

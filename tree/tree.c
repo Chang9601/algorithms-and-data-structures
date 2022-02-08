@@ -45,7 +45,7 @@ BSTNode *insert_bstnode(BSTNode *root, int value)
 		root -> value = value;
 	}
 	else if(root -> value == value)
-		printf("%d already in the bst.\n", value);
+		printf("%d already in the tree.\n", value);
 	else if(root -> value < value)
 		root -> right = insert_bstnode(root -> right, value);
 	else
@@ -199,7 +199,7 @@ int main(int argc, char *argv[])
 		}
 		else if(!strcmp(cmd, "destroy"))
 		{
-			puts("Destroy the bst");
+			puts("Destroy the tree");
 			destroy_bst(root);
 			root = NULL;
 		}

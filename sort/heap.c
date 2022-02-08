@@ -1,7 +1,7 @@
 #include <stdio.h>
 #define SWAP(a,b) do{int t = a; a = b; b = t;}while(0)
 
-void _heapify(int array[], int low, int high)
+static void _heapify(int array[], int low, int high)
 {
 	int tmp = array[low];
 	int parent;
