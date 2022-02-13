@@ -25,6 +25,6 @@
 * 그래프
   1. 간선 구조체를 사용해서 인접 리스트로 그래프 구조체 구현
 
-## 참조
+## 참고
 * Steven S. Skiena, 「The Algorithm Design Manual」, Springer, 2020
 * 보요 시타바, 「Do it! 자료구조와 함께 배우는 알고리즘 입문 C 언어 편」, 이지스퍼블리싱(주), 2021
