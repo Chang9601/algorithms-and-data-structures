@@ -9,7 +9,8 @@ int connected_component(Graph *graph)
 {
 	int i;
 	int component_num;
-
+	initialize_bfs(graph);
+	
 	component_num = 0;	
 	for(i = 1; i <= graph -> num_vertices; i++)
 	{
