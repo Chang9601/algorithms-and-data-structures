@@ -30,9 +30,11 @@ void dfs(Graph *graph, int start_vertex)
 		if(vertex_status[other_vertex] == UNDISCOVERED)
 		{
 			parent_vertex[other_vertex] = start_vertex;
+			process_edge(start_vertex, other_vertex);
 			dfs(graph, other_vertex);
 		}
-
+		else if(vertex_status[other_vertex] != PROCESSED && (parent_vertex[start_vertex] != other_vertex) || graph -> directed)
+			process_edge(start_vertex, other_vertex);
 		if(finished)
 			return;
 	}
@@ -52,6 +54,17 @@ void find_path(int start_vertex, int end_vertex, int parent_vertex[])
 	}
 }
 
+void process_edge(int vertex, int other_vertex)
+{
+	if(parent_vertex[other_vertex] != vertex)
+	{
+		printf("Cycle from %d to %d:", other_vertex, vertex);
+		find_path(other_vertex, vertex, parent_vertex);
+		finished = true;
+	}
+}
+
+
 int main(int argc, char *argv[])
 {
 	Graph graph;
@@ -60,11 +73,13 @@ int main(int argc, char *argv[])
 
 	make_graph(&graph, directed);
 	dfs(&graph, 1);
+	/*
 	for(i = 1; i <= graph.num_vertices; i++)
 	{
 		find_path(1, i, parent_vertex);
 		putchar('\n');
 	}
+	*/
 	destroy_graph(&graph);
 	return 0;
 }
