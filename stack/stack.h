@@ -7,8 +7,8 @@ typedef struct _Stack {
 } Stack;
 
 void initialize_stack(Stack *stack, int count);
-int push(Stack *stack, int value);
-int pop(Stack *stack, int *value);
-int top(Stack *stack, int *value);
+int push_stack(Stack *stack, int value);
+int pop_stack(Stack *stack, int *value);
+int top_stack(Stack *stack, int *value);
 bool is_empty_stack(Stack *stack);
 void destroy_stack(Stack *stack);
