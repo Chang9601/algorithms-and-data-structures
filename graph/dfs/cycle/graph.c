@@ -115,4 +115,3 @@ void destroy_graph(Graph *graph)
 		graph -> edges[i] = NULL;
 	}
 }
-

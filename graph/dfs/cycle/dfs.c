@@ -64,7 +64,6 @@ void process_edge(int vertex, int other_vertex)
 	}
 }
 
-
 int main(int argc, char *argv[])
 {
 	Graph graph;
