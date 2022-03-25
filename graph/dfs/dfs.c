@@ -66,5 +66,6 @@ int main(int argc, char *argv[])
 		putchar('\n');
 	}
 	destroy_graph(&graph);
+
 	return 0;
 }
