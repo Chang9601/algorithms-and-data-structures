@@ -1,9 +1,10 @@
 #include <stdio.h>
 #define SWAP(a,b) do{int t = a; a = b; b = t;}while(0)
 
+// Turn a[low] ~ a[right] into a heap
 static void _heapify(int array[], int low, int high)
 {
-	int tmp = array[low];
+	int root = array[low]; // root
 	int parent;
 	int child, left_child, right_child;
 
@@ -13,13 +14,13 @@ static void _heapify(int array[], int low, int high)
 		right_child = parent * 2 + 2;
 		
 		child = (right_child <= high && array[right_child] > array[left_child]) ? right_child : left_child;
-		if(tmp >= array[child])
+		if(root >= array[child])
 			break;
 
 		array[parent] = array[child];	
 	}
 
-	array[parent] = tmp;
+	array[parent] = root;
 }
 
 void heap_sort(int array[], int array_size)
