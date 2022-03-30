@@ -60,7 +60,6 @@ int prim(Graph *graph, int start_vertex)
 	return total_weight;
 }
 
-
 int main(int argc, char *argv[])
 {
 	Graph graph;

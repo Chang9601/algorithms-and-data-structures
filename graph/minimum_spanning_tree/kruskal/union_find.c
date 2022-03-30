@@ -3,29 +3,30 @@
 
 void initialize_union_find(UnionFind *uf, int count)
 {
+	uf -> count = count;
+
 	int i;
 	for(i = 1; i <= uf -> count; i++)
 	{
 		uf -> root[i] = i;
 		uf -> size[i] = 1;
 	}
-	uf -> count = count;
 }
 
-int find(UnionFind *uf, int x)
+int find_root(UnionFind *uf, int x)
 {
 	if(x == uf -> root[x])
 		return x;
-	return uf -> root[x] = find(uf, uf -> root[x]);
+	return uf -> root[x] = find_root(uf, uf -> root[x]);
 }
 
 void unite_sets(UnionFind *uf, int x, int y)
 {
 	// roots of x and y
-	int root_x, int root_y;
+	int root_x, root_y;
 
-	root_x = find(uf, x);
-	root_y = find(uf, y);	
+	root_x = find_root(uf, x);
+	root_y = find_root(uf, y);	
 	
 	// x and y in the same set	
 	if(root_x == root_y)
@@ -45,5 +46,5 @@ void unite_sets(UnionFind *uf, int x, int y)
 
 bool is_same_set(UnionFind *uf, int x, int y)
 {
-	return find(uf, x) == find(uf, y);
+	return find_root(uf, x) == find_root(uf, y);
 }

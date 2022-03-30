@@ -17,7 +17,7 @@ typedef struct _Graph {
 } Graph;
 
 void initialize_graph(Graph *graph, bool directed);
-void insert_edge(Graph *graph, int vertex, int other_vertex, bool directed);
+void insert_edge(Graph *graph, int vertex, int other_vertex, int weight, bool directed);
 void delete_edge(Graph *graph, int vertex, int other_vertex, bool directed);
 void make_graph(Graph *graph, bool directed);
 void print_graph(Graph *graph);

@@ -23,18 +23,18 @@ void initialize_graph(Graph *graph, bool directed)
 	}
 }
 
-void insert_edge(Graph *graph, int vertex, int other_vertex, bool directed)
+void insert_edge(Graph *graph, int vertex, int other_vertex, int weight, bool directed)
 {
 	Edge *edge = _allocate_node();
 	
 	edge -> other_vertex = other_vertex;
-	edge -> weight = 0;
+	edge -> weight = weight;
 	edge -> next = graph -> edges[vertex];
 	graph -> edges[vertex] = edge;
 	graph -> degrees[vertex]++;
 	
 	if(!directed)
-		insert_edge(graph, other_vertex, vertex, true);
+		insert_edge(graph, other_vertex, vertex, weight, true);
 	else
 		graph -> num_edges++;	
 } 
@@ -71,6 +71,7 @@ void make_graph(Graph *graph, bool directed)
 {
 	int i;
 	int vertex, other_vertex;
+	int weight;
 	int num_edges;
 
 	initialize_graph(graph, directed);
@@ -79,9 +80,9 @@ void make_graph(Graph *graph, bool directed)
 	
 	for(i = 1; i <= num_edges; i++)
 	{
-		printf("Edge: ");
-		scanf("%d %d", &vertex, &other_vertex);
-		insert_edge(graph, vertex, other_vertex, directed);
+		printf("Edge and weight: ");
+		scanf("%d %d %d", &vertex, &other_vertex, &weight);
+		insert_edge(graph, vertex, other_vertex, weight, directed);
 	}
 }	
 
@@ -114,44 +115,4 @@ void destroy_graph(Graph *graph)
 		}
 		graph -> edges[i] = NULL;
 	}
-}
-
-int main(int argc, char *argv[])
-{
-	char cmd[15];
-	Graph graph;
-	bool directed = false;
-	int vertex, other_vertex;
-
-	make_graph(&graph, directed);
-	
-	while(scanf("%s", cmd) != EOF)
-	{
-		if(!strcmp(cmd, "insert"))
-		{
-			printf("Insert an edge: ");
-			scanf("%d %d", &vertex, &other_vertex);
-			insert_edge(&graph, vertex, other_vertex, directed);
-		}
-		else if(!strcmp(cmd, "delete"))
-		{
-			printf("Delete an edge: " );
-			scanf("%d %d", &vertex, &other_vertex);		
-			delete_edge(&graph, vertex, other_vertex, directed);
-		}
-		else if(!strcmp(cmd, "print"))
-		{
-			puts("Print the graph");
-			print_graph(&graph);
-		}
-		else if(!strcmp(cmd, "destroy"))
-		{
-			puts("Destroy the graph");
-			destroy_graph(&graph);
-		}
-		else
-			puts("Invalud command");	
-	}	
-
-	return 0;
 }
