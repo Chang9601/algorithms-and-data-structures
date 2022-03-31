@@ -124,8 +124,8 @@ void destroy_bst(BSTNode *root)
 {
 	if(root != NULL)
 	{
-		destroy_bst(root -> right);
 		destroy_bst(root -> left);
+		destroy_bst(root -> right);
 		free(root);
 	}
 }
