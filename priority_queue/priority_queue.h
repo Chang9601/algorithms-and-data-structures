@@ -1,5 +1,5 @@
 #define MAX 100
-typedef struct {
+typedef struct _PriorityQueue {
 	int pq[MAX + 1];
 	int count;
 } PriorityQueue;
