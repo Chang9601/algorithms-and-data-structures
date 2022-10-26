@@ -4,7 +4,7 @@
 #include <string.h>
 #include "singly_list.h"
 
-static Node *_allocNode(void);
+static Node *_allocNode(int value);
 static Node *_getPrevNode(Node *head, Node *node);
 
 // Initialize a list.
@@ -34,8 +34,7 @@ Node *findNode(Node *head, int value)
 // Insert a node at the beginning of the list.
 void insertNode(Node **head, int value)
 {
-	Node *node = _allocNode();
-	node -> value = value;
+	Node *node = _allocNode(value);
 	node -> next = *head;
 	*head = node;
 }
@@ -146,9 +145,12 @@ int main(int argc, char *argv[])
 }
 
 
-static Node *_allocNode(void)
+static Node *_allocNode(int value)
 {
-	return calloc(1, sizeof(Node));
+	Node *node = calloc(1, sizeof(*node));
+	node -> value = value;
+
+	return node; 
 }
 
 static Node *_getPrevNode(Node *head, Node *node)
