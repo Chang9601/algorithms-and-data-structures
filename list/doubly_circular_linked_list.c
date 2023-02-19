@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include "doubly_circular_list.h"
+#include "doubly_circular_linked_list.h"
 
 static Node *_allocNode(int value);
 

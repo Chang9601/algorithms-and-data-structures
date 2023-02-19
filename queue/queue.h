@@ -8,10 +8,10 @@ typedef struct _Queue {
 	int *pointer;	
 } Queue;
 
-void initialize_queue(Queue *queue, int count);
-int push_queue(Queue *queue, int value);
-int pop_queue(Queue *queue, int *value);
-int front_queue(Queue *queue, int *value);
-int back_queue(Queue *queue, int *value);
-bool is_empty_queue(Queue *queue);
-void destroy_queue(Queue *queue);
+void initQueue(Queue *queue, int count);
+int pushQueue(Queue *queue, int value);
+int popQueue(Queue *queue, int *value);
+int frontQueue(Queue *queue, int *value);
+int backQueue(Queue *queue, int *value);
+bool isEmptyQueue(Queue *queue);
+void destroyQueue(Queue *queue);

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <string.h>
-#include "singly_list.h"
+#include "singly_linked_list.h"
 
 static Node *_allocNode(int value);
 static Node *_getPrevNode(Node *head, Node *node);
@@ -68,6 +68,7 @@ void removeNodeWDoublePtr(Node **head, Node *node)
 	}
 }
 
+// Print a list.
 void printList(Node *head)
 {
 	for (Node *curr = head; curr != NULL; curr = curr -> next) 
@@ -75,6 +76,7 @@ void printList(Node *head)
 	putchar('\n');
 }
 
+// Destroy a list.
 void destroyList(Node **head)
 {
 	Node *next;

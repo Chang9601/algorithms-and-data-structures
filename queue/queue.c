@@ -4,14 +4,14 @@
 #include <stdbool.h>
 #include "queue.h"
 
-void initialize_queue(Queue *queue, int count)
+void initQueue(Queue *queue, int count)
 {
-	queue -> pointer = malloc(sizeof(int) * count);
+	queue -> pointer = calloc(count, sizeof(int));
 	queue -> count = count;
 	queue -> idx = queue -> front = queue -> rear = 0;
 }
 
-int push_queue(Queue *queue, int value)
+int pushQueue(Queue *queue, int value)
 {
 	if(queue -> idx >= queue -> count)
 		return -1;
@@ -22,7 +22,7 @@ int push_queue(Queue *queue, int value)
 	return 0;
 }
 
-int pop_queue(Queue *queue, int *value)
+int popQueue(Queue *queue, int *value)
 {
 	if(queue -> idx <= 0)
 		return -1;
@@ -33,7 +33,7 @@ int pop_queue(Queue *queue, int *value)
 	return 0;
 }
 
-int front_queue(Queue *queue, int *value)
+int frontQueue(Queue *queue, int *value)
 {
 	if(queue -> idx <= 0)
 		return -1;
@@ -42,7 +42,7 @@ int front_queue(Queue *queue, int *value)
 	return 0;
 }
 	
-int back_queue(Queue *queue, int *value)
+int backQueue(Queue *queue, int *value)
 {
 	if(queue -> idx <= 0)
 		return -1;
@@ -57,12 +57,12 @@ int back_queue(Queue *queue, int *value)
 	return 0;
 }
 
-bool is_empty_queue(Queue *queue)
+bool isEmptyQueue(Queue *queue)
 {
 	return queue -> idx <= 0;
 }	
 
-void destroy_queue(Queue *queue)
+void destroyQueue(Queue *queue)
 {
 	if(queue -> pointer)
 		free(queue -> pointer);
@@ -79,7 +79,7 @@ int main(int argc, char *argv[])
 	printf("Enter the size of a queue: ");
 	scanf("%d", &count);
 
-	initialize_queue(&queue, count);
+	initQueue(&queue, count);
 		
 	while(scanf("%s", cmd) != EOF)
 	{
@@ -87,43 +87,43 @@ int main(int argc, char *argv[])
 		{
 			printf("Push value: ");
 			scanf("%d", &value);
-			if(push_queue(&queue, value) != 0)
-				puts("Exceeded capacity");
+			if(pushQueue(&queue, value) != 0)
+				puts("Capacity exceeded ");
 		}	
 		else if(!strcmp(cmd, "pop"))
 		{
-			if(is_empty_queue(&queue))
+			if(isEmptyQueue(&queue))
 				puts("Empty queue");
 			else
 			{
-				pop_queue(&queue, &value);
+				popQueue(&queue, &value);
 				printf("Value %d deleted\n", value);
 			}
 		}
 		else if(!strcmp(cmd, "front"))
 		{
-			if(is_empty_queue(&queue))
+			if(isEmptyQueue(&queue))
 				puts("Empty queue");
 			else
 			{	
-				front_queue(&queue, &value);
+				frontQueue(&queue, &value);
 				printf("Value %d at the front\n", value);
 			}
 		}
 		else if(!strcmp(cmd, "back"))
 		{
-			if(is_empty_queue(&queue))
+			if(isEmptyQueue(&queue))
 				puts("Empty queue");
 			else
 			{	
-				back_queue(&queue, &value);
+				backQueue(&queue, &value);
 				printf("Value %d at the rear\n", value);
 			}
 		}
 		else if(!strcmp(cmd, "destroy"))
 		{
 			puts("Destroy the queue");
-			destroy_queue(&queue);
+			destroyQueue(&queue);
 		}
 		else
 			puts("Wrong command");
